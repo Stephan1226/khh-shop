@@ -10,6 +10,7 @@ public class ItemController {
     String list(Model model) {
         model.addAttribute("name", "바지");
         model.addAttribute("price", "15000");
+        model.addAttribute("stock", "100");
         return "list.html";
     }
 }
