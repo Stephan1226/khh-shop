@@ -34,6 +34,12 @@ public class ItemController {
         return "redirect:/list/page/1";
     }
 
+    @PostMapping("/save")
+    String savePost(@ModelAttribute Item item) {
+        itemService.updateItem(item.getTitle(), item.getPrice(), item.getId());
+        return "redirect:/list/page/1";
+    }
+
     @GetMapping("/detail/{id}")
     String detail(Model model, @PathVariable Long id) {
 
@@ -60,5 +66,22 @@ public class ItemController {
         }
         model.addAttribute("pageNumbers", ids);
         return "list.html";
+    }
+
+    @GetMapping("/edit/{id}")
+    String edit(Model model, @PathVariable Long id) {
+        Optional<Item> result = itemService.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("data", result.get());
+            return "edit.html";
+        } else {
+            return "redirect:/list";
+        }
+    }
+
+    @DeleteMapping("/delete")
+    String delete(@RequestParam Integer id) {
+        itemService.deleteItem(id);
+        return "redirect:/list";
     }
 }

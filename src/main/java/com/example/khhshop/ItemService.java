@@ -20,6 +20,20 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    public void updateItem(String title, Integer price, Integer id){
+        Item item = new Item();
+        item.setTitle(title);
+        item.setPrice(price);
+        item.setId(id);
+        itemRepository.save(item);
+    }
+
+    public void deleteItem(Integer id){
+        Item item = new Item();
+        item.setId(id);
+        itemRepository.delete(item);
+    }
+
     public List<Item> findAll(){
         return itemRepository.findAll();
     }
