@@ -22,9 +22,6 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/list")
 //                .failureUrl("/fail")
         );
-        http.csrf(csrf -> csrf.csrfTokenRepository(csrfTokenRepository())
-                .ignoringRequestMatchers("/login")
-        );
         http.logout( logout -> logout.logoutUrl("/logout") );
         return http.build();
     }

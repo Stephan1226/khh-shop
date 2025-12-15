@@ -20,6 +20,10 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    public List<Item> searchItems(String searchText){
+        return itemRepository.fullTextSearch(searchText);
+    }
+
     public void saveItem(String title, Integer price, String username){
         Item item = new Item();
         item.setTitle(title);

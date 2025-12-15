@@ -73,6 +73,14 @@ public class ItemController {
         return "list.html";
     }
 
+    @PostMapping("/search")
+    String postSearch(@RequestParam String searchText, Model model) {
+        // Item테이블에서 searchText가 들어있는거 찾아서 가져와주세요
+        List<Item> items = itemService.searchItems(searchText);
+        model.addAttribute("items", items);
+        return "list.html";
+    }
+
     @GetMapping("/edit/{id}")
     String edit(Model model, @PathVariable Long id) {
         Optional<Item> result = itemService.findById(id);
