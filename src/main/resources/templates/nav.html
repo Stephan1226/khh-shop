@@ -3,4 +3,7 @@
     <a href="/list">List</a>
     <a href="/write">Write</a>
     <span sec:authentication="principal.username"></span>
+    <div sec:authorize="isAuthenticated()">
+        <a href="/logout">Logout</a>
+    </div>
 </div>
