@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,12 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    String writePost(@ModelAttribute Item item) {
-        itemService.saveItem(item.getTitle(), item.getPrice());
+    String writePost(@ModelAttribute Item item, Authentication auth) {
+        if(auth.isAuthenticated()) {
+            itemService.saveItem(item.getTitle(), item.getPrice(), auth.getName());
+        } else {
+            itemService.saveItem(item.getTitle(), item.getPrice());
+        }
         return "redirect:/list/page/1";
     }
 

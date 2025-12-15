@@ -20,6 +20,14 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    public void saveItem(String title, Integer price, String username){
+        Item item = new Item();
+        item.setTitle(title);
+        item.setPrice(price);
+        item.setUsername(username);
+        itemRepository.save(item);
+    }
+
     public void updateItem(String title, Integer price, Integer id){
         Item item = new Item();
         item.setTitle(title);

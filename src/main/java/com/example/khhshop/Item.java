@@ -16,8 +16,8 @@ public class Item {
 
     @Column(length = 255)
     private String title;
-    @Column()
     private Integer price;
+    private String username;
 
     public void setPrice(Integer price) {
         if (price < 0) {
