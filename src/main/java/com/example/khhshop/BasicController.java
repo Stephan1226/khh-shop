@@ -1,13 +1,20 @@
 package com.example.khhshop;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BasicController {
+    private final StoreService storeService;
+
     @GetMapping("/")
     @ResponseBody
     String hello() {
@@ -37,5 +44,12 @@ public class BasicController {
     String date() {
         Date date = new Date();
         return date.toString();
+    }
+
+    @GetMapping("/store")
+    @ResponseBody
+    String store() {
+        List<Store> stores = storeService.findAll();
+        return stores.toString();
     }
 }

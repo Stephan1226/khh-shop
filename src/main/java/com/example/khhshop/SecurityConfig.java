@@ -18,7 +18,7 @@ public class SecurityConfig {
         );
         http.formLogin((formLogin) -> formLogin.loginPage("/login")
                 .defaultSuccessUrl("/list")
-                .failureUrl("/fail")
+//                .failureUrl("/fail")
         );
         return http.build();
     }
