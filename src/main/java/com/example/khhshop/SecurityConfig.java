@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/list")
 //                .failureUrl("/fail")
         );
+        http.logout( logout -> logout.logoutUrl("/logout") );
         return http.build();
     }
     @Bean
